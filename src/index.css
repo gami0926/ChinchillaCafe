@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --color-linen: #f5f0e8;
+  --color-cedar: #9a6a43;
+  --color-walnut: #2d2925;
+  --color-fur: #a7a7a0;
+  --color-moss: #66715a;
+  --color-brass: #b59a5b;
+  --color-fine-border: rgba(154, 106, 67, 0.28);
+  --shadow-soft: 0 18px 45px rgba(45, 41, 37, 0.08);
+  --ease-cafe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-linen);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-linen);
+  color: var(--color-walnut);
+  font-family:
+    "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui,
+    sans-serif;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(181, 154, 91, 0.35);
+  color: var(--color-walnut);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family:
+      "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
+      serif;
+    line-height: 1.25;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .font-mincho {
+    font-family:
+      "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
+      serif;
+  }
+
+  .animate-hero-in {
+    animation: fade-up 780ms var(--ease-cafe) both;
+  }
+
+  .animate-page-in {
+    animation: page-fade 260ms ease-out both;
+  }
+
+  .motion-card {
+    transition:
+      transform 220ms var(--ease-cafe),
+      box-shadow 220ms var(--ease-cafe),
+      border-color 220ms var(--ease-cafe);
+  }
+
+  .motion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .motion-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+  }
+
+  .motion-arrow::after {
+    content: "->";
+    transition: transform 200ms var(--ease-cafe);
+  }
+
+  .motion-arrow:hover::after {
+    transform: translateX(4px);
+  }
+
+  .selection-surface {
+    transition:
+      background-color 180ms ease-out,
+      border-color 180ms ease-out,
+      color 180ms ease-out;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .motion-card:hover,
+  .motion-arrow:hover::after {
+    transform: none;
+  }
+}
